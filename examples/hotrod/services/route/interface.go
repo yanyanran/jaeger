@@ -21,6 +21,7 @@ import (
 )
 
 // Route describes a route between Pickup and Dropoff locations and expected time to arrival.
+// 上车点/下车点/时间
 type Route struct {
 	Pickup  string
 	Dropoff string

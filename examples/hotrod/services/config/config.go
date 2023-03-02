@@ -24,7 +24,7 @@ var (
 
 	// RouteWorkerPoolSize is the size of the worker pool used to query `route` service.
 	// Can be overwritten from command line.
-	RouteWorkerPoolSize = 3
+	RouteWorkerPoolSize = 3 // 可设为100 因为goroutines便宜
 
 	// 'customer' service
 

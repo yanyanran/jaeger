@@ -69,6 +69,7 @@ func (r *Redis) FindDriverIDs(ctx context.Context, location string) []string {
 }
 
 // GetDriver returns driver and the current car location
+// use opentracing API
 func (r *Redis) GetDriver(ctx context.Context, driverID string) (Driver, error) {
 	if span := opentracing.SpanFromContext(ctx); span != nil {
 		span := r.tracer.StartSpan("GetDriver", opentracing.ChildOf(span.Context()))
@@ -77,7 +78,7 @@ func (r *Redis) GetDriver(ctx context.Context, driverID string) (Driver, error) 
 		defer span.Finish()
 		ctx = opentracing.ContextWithSpan(ctx, span)
 	}
-	// simulate RPC delay
+	// simulate RPC delay 模拟RPC延迟
 	delay.Sleep(config.RedisGetDelay, config.RedisGetDelayStdDev)
 	if err := r.checkError(); err != nil {
 		if span := opentracing.SpanFromContext(ctx); span != nil {

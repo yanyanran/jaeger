@@ -98,6 +98,7 @@ func (s *Server) route(w http.ResponseWriter, r *http.Request) {
 	w.Write(data)
 }
 
+// 计算乘车时间
 func computeRoute(ctx context.Context, pickup, dropoff string) *Route {
 	start := time.Now()
 	defer func() {

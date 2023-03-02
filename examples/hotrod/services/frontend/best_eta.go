@@ -122,7 +122,7 @@ func (eta *bestETA) getRoutes(ctx context.Context, customer *customer.Customer, 
 		wg.Add(1)
 		driver := dd // capture loop var
 		// Use worker pool to (potentially) execute requests in parallel
-		eta.pool.Execute(func() {
+		eta.pool.Execute(func() { // 并行调度(worker pool
 			route, err := eta.route.FindRoute(ctx, driver.Location, customer.Location)
 			routesLock.Lock()
 			results = append(results, routeResult{
